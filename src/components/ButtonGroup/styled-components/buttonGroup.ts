@@ -3,17 +3,20 @@ interface ButtonGroupProps {
   variant?: 'contained' | 'outlined' | 'text';
   color?: 'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success';
   size?: 'small' | 'medium' | 'large';
+  direction?: 'row' | 'column';
 }
 export const Container = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: ${(props: ButtonGroupProps) =>
+    props.direction === 'row' ? 'row' : 'column'};
   border-radius: 5px;
-  box-shadow:${(props: ButtonGroupProps) => props.variant ==='text'?'none':'0px 2px 4px var(--other_overlay);' };
+  box-shadow: ${(props: ButtonGroupProps) =>
+    props.variant === 'text' ? 'none' : '0px 2px 4px var(--other_overlay);'};
 `;
 export const ButtomStyle = styled.a`
   padding-left: 2rem;
   padding-right: 2rem;
-  min-width:${(props: ButtonGroupProps) => {
+  min-width: ${(props: ButtonGroupProps) => {
     switch (props.size) {
       case 'small':
         return '10';
@@ -24,7 +27,7 @@ export const ButtomStyle = styled.a`
       default:
         return '15';
     }
-  }}rem; 
+  }}rem;
   height: ${(props: ButtonGroupProps) => {
     switch (props.size) {
       case 'small':
@@ -83,29 +86,27 @@ export const ButtomStyle = styled.a`
   align-items: center;
 
   color: ${(props: ButtonGroupProps) => {
-      
-        if (props.variant === 'contained') {
-          return 'var(--white)';
-        } else {
-          switch (props.color) {
-            case 'primary':
-              return 'var(--primary)';
-            case 'secondary':
-              return 'var(--secondary)';
-            case 'error':
-              return 'var(--error)';
-            case 'warning':
-              return 'var(--warning)';
-            case 'info':
-              return 'var(--info)';
-            case 'success':
-              return 'var(--success)';
-            default:
-              return 'var(--primary)';
-          }
-        }
-      
-    }};
+    if (props.variant === 'contained') {
+      return 'var(--white)';
+    } else {
+      switch (props.color) {
+        case 'primary':
+          return 'var(--primary)';
+        case 'secondary':
+          return 'var(--secondary)';
+        case 'error':
+          return 'var(--error)';
+        case 'warning':
+          return 'var(--warning)';
+        case 'info':
+          return 'var(--info)';
+        case 'success':
+          return 'var(--success)';
+        default:
+          return 'var(--primary)';
+      }
+    }
+  }};
   font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -124,34 +125,54 @@ export const ButtomStyle = styled.a`
   &:active {
     filter: brightness(70%);
   }
-  &:first-child {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-  }
-  &:last-child {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-  }
+  ${(props: ButtonGroupProps) => {
+    switch (props.direction) {
+      case 'column':
+        return `&:first-child {
+          border-top-left-radius: 5px;
+          border-top-right-radius: 5px;
+        }
+        &:last-child {
+          border-bottom-left-radius: 5px;
+          border-bottom-right-radius: 5px;
+        }`;
+
+      case 'row':
+        return `&:first-child {
+          border-top-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+        }
+        &:last-child {
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+        }`;
+      default:
+        break;
+    }
+  }}
 `;
 export const Separate = styled.div`
-  width: 1px;
-  background: ${(props: ButtonGroupProps) => { 
-  switch (props.color) {
-    case 'primary':
-      return 'var(--primary)';
-    case 'secondary':
-      return 'var(--secondary)';
-    case 'error':
-      return 'var(--error)';
-    case 'warning':
-      return 'var(--warning)';
-    case 'info':
-      return 'var(--info)';
-    case 'success':
-      return 'var(--success)';
-    default:
-      return 'var(--primary)';
-  }
+  width: ${(props: ButtonGroupProps) =>
+    props.direction === 'row' ? '1px' : '100%'};
+  height: ${(props: ButtonGroupProps) =>
+    props.direction === 'row' ? '100%' : '1px'};
+  background: ${(props: ButtonGroupProps) => {
+    switch (props.color) {
+      case 'primary':
+        return 'var(--primary)';
+      case 'secondary':
+        return 'var(--secondary)';
+      case 'error':
+        return 'var(--error)';
+      case 'warning':
+        return 'var(--warning)';
+      case 'info':
+        return 'var(--info)';
+      case 'success':
+        return 'var(--success)';
+      default:
+        return 'var(--primary)';
+    }
   }};
   filter: brightness(85%);
 `;

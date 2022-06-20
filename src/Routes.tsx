@@ -4,9 +4,9 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import { Home } from "./pages/Home";
-import { Home2 } from "./pages/Home2";
-import { Home3 } from "./pages/Home3";
+import { PageButton } from "./pages/PageButton";
+import { PageButtonGroup } from "./pages/PageButtonGroup";
+import { PageButtonGroupSplit } from "./pages/PageButtonGroupSplit";
 // import Cadastro from "./pages/Cadastro";
 // import Dashboard from "./pages/Dashboard";
 // import { Editar } from "./pages/Editar";
@@ -25,9 +25,10 @@ export function AppRoutes() {
   return (
     <Router>
       <Routes>
-      <Route path="/" element={<Home3 />}/>
-      <Route path="/button-group" element={<Home2 />}/>
-      <Route path="/button" element={<Home />}/>
+      <Route path="/" element={<PageButtonGroupSplit />}/>
+      <Route path="/button-group-split" element={<PageButtonGroupSplit />}/>
+      <Route path="/button-group" element={<PageButtonGroup />}/>
+      <Route path="/button" element={<PageButton />}/>
         {/* <Route path="/cadastro" element={<Cadastro />} />
         <Route
           path="/dashboard"

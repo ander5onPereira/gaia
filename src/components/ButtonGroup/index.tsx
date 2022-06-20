@@ -8,6 +8,7 @@ interface ButtonGroupProps {
   variant?: 'contained' | 'outlined' | 'text';
   size?: 'small' | 'medium' | 'large';
   color?: 'primary' | 'secondary' | 'error' | 'warning' | 'info' | 'success';
+  direction?: 'row' | 'column';
   options: Array<optionsProps>;
 }
 interface optionsProps {
@@ -18,10 +19,11 @@ export const ButtonGroup = ({
   variant = 'contained',
   size = 'medium',
   color='primary',
+  direction='column',
   options,
 }: ButtonGroupProps) => {
   return (
-    <Container variant={variant} size={size}>
+    <Container direction={direction} variant={variant} size={size}>
       {options.map((option, index) => {
         return (
           <>
@@ -30,10 +32,11 @@ export const ButtonGroup = ({
               onClick={option.onclick}
               variant={variant}
               size={size}
+              direction={direction}
             >
               {option.name}
             </ButtomStyle>
-            {index !== options.length - 1 && variant!=='outlined'  && <Separate color={color}/>}
+            {index !== options.length - 1 && variant!=='outlined'  && <Separate direction={direction} color={color}/>}
           </>
         );
       })}

@@ -11,7 +11,7 @@ const btn = {
     onclick: () => console.log('1'),
     name: 'Buttom',
   };
-export function Home3() {
+export function PageButtonGroupSplit() {
   return (
     <>
       <div

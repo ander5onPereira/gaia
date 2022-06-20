@@ -21,7 +21,7 @@ const options = [
     name: 'Medium 3',
   },
 ];
-export function Home2() {
+export function PageButtonGroup() {
   return (
     <>
       <div

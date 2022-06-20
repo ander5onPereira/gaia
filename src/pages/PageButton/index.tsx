@@ -28,7 +28,7 @@ import {RiArrowRightLine,RiArrowLeftLine,RiAddFill, RiStarFill } from 'react-ico
 //   }
 // ] as FormProps[];
 
-export function Home() {
+export function PageButton() {
   // const { register, handleSubmit, watch, formState: { errors }, control } = useForm();
   // const onSubmit = (data: any) => {
   //   console.log(data);
