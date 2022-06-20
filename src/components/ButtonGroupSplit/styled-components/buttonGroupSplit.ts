@@ -11,21 +11,8 @@ export const Container = styled.div`
   box-shadow:0px 2px 4px var(--other_overlay);
 `;
 export const ButtomStyle = styled.a`
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding: 0.5rem 1rem;
   min-width:${(props: ButtonGroupProps) => {
-    switch (props.size) {
-      case 'small':
-        return '10';
-      case 'medium':
-        return '15';
-      case 'large':
-        return '20';
-      default:
-        return '15';
-    }
-  }}rem; 
-  height: ${(props: ButtonGroupProps) => {
     switch (props.size) {
       case 'small':
         return '2';
@@ -35,6 +22,18 @@ export const ButtomStyle = styled.a`
         return '3';
       default:
         return '2.5';
+    }
+  }}rem; 
+  height: ${(props: ButtonGroupProps) => {
+    switch (props.size) {
+      case 'small':
+        return '1.5';
+      case 'medium':
+        return '2';
+      case 'large':
+        return '2.5';
+      default:
+        return '2';
     }
   }}rem;
   background: ${(props: ButtonGroupProps) => {
@@ -103,8 +102,7 @@ export const ButtomStyle = styled.a`
             default:
               return 'var(--primary)';
           }
-        }
-      
+        } 
     }};
   font-family: 'Inter', sans-serif;
   font-style: normal;
@@ -138,49 +136,70 @@ display: flex;
 justify-content: center;
 align-items: center;
 padding: 0;
+cursor: pointer;
   height: ${(props: ButtonGroupProps) => {
     switch (props.size) {
       case 'small':
-        return '2';
+        return '1.5';
       case 'medium':
-        return '2.5';
+        return '2';
       case 'large':
-        return '3';
-      default:
         return '2.5';
+      default:
+        return '2';
     }
 }}rem;
 width:${(props: ButtonGroupProps) => {
     switch (props.size) {
       case 'small':
-        return '2';
+        return '1.5';
       case 'medium':
-        return '2.5';
+        return '2';
       case 'large':
-        return '3';
-      default:
         return '2.5';
+      default:
+        return '2';
     }
 }}rem;
-  
-  background: ${(props: ButtonGroupProps) => { 
-  switch (props.color) {
-    case 'primary':
-      return 'var(--primary)';
-    case 'secondary':
-      return 'var(--secondary)';
-    case 'error':
-      return 'var(--error)';
-    case 'warning':
-      return 'var(--warning)';
-    case 'info':
-      return 'var(--info)';
-    case 'success':
-      return 'var(--success)';
-    default:
-      return 'var(--primary)';
-  }
-}};
+  background: ${(props: ButtonGroupProps) => {
+    switch (props.color) {
+      case 'primary':
+        return props.variant === 'default' ? 'var(--primary)' : 'transparent';
+      case 'secondary':
+        return props.variant === 'default'
+          ? 'var(--secondary)'
+          : 'transparent';
+      case 'error':
+        return props.variant === 'default' ? 'var(--error)' : 'transparent';
+      case 'warning':
+        return props.variant === 'default' ? 'var(--warning)' : 'transparent';
+      case 'info':
+        return props.variant === 'default' ? 'var(--info)' : 'transparent';
+      case 'success':
+        return props.variant === 'default' ? 'var(--success)' : 'transparent';
+      default:
+        return props.variant === 'default' ? 'var(--primary)' : 'transparent';
+    }
+  }};
+  border: 1px solid
+    ${(props: ButtonGroupProps) => {
+      switch (props.color) {
+        case 'primary':
+          return 'var(--primary)';
+        case 'secondary':
+          return 'var(--secondary)';
+        case 'error':
+          return 'var(--error)';
+        case 'warning':
+          return 'var(--warning)';
+        case 'info':
+          return 'var(--info)';
+        case 'success':
+          return 'var(--success)';
+        default:
+          return 'var(--primary)';
+      }
+    }};
   &:hover {
     filter: brightness(85%);
     ${(props: ButtonGroupProps) =>
@@ -192,11 +211,13 @@ width:${(props: ButtonGroupProps) => {
   &:first-child {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    border-right: none;
   }
   &:last-child {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-  }
+    border-left: none;
+ }
 `;
 export const Separate = styled.div`
   width: 1px;
@@ -220,15 +241,29 @@ export const Separate = styled.div`
   }};
   filter: brightness(85%);
 `;
+
 export const Icon = styled.div`
-
-  &[data-active=true] {
-    transform: rotate(0deg);
-  }
-
-  transform: rotate(180deg);
-  color: ${(props: ButtonGroupProps) => {
-      
+  background: ${(props: ButtonGroupProps) => {
+    switch (props.color) {
+      case 'primary':
+        return props.variant === 'default' ? 'var(--primary)' : 'transparent';
+      case 'secondary':
+        return props.variant === 'default'
+          ? 'var(--secondary)'
+          : 'transparent';
+      case 'error':
+        return props.variant === 'default' ? 'var(--error)' : 'transparent';
+      case 'warning':
+        return props.variant === 'default' ? 'var(--warning)' : 'transparent';
+      case 'info':
+        return props.variant === 'default' ? 'var(--info)' : 'transparent';
+      case 'success':
+        return props.variant === 'default' ? 'var(--success)' : 'transparent';
+      default:
+        return props.variant === 'default' ? 'var(--primary)' : 'transparent';
+    }
+  }};
+  color: ${(props: ButtonGroupProps) => {   
       if (props.variant === 'default') {
         return 'var(--white)';
       } else {
@@ -248,7 +283,11 @@ export const Icon = styled.div`
           default:
             return 'var(--primary)';
         }
-      }
-    
+      }  
   }};
+  
+  &[data-active=true] {
+    transform: rotate(0deg);
+  }
+  transform: rotate(180deg);
 `;

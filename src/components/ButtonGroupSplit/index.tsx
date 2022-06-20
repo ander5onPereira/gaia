@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { RiArrowUpSLine } from 'react-icons/ri';
+import { RiArrowUpSFill } from 'react-icons/ri';
 import {
   Container,
   ButtomStyle,
@@ -44,7 +44,7 @@ export const ButtonGroupSplit = ({
         size={size}
       >
         <Icon data-active={active} variant={variant} color={color}>
-        <RiArrowUpSLine/>
+        <RiArrowUpSFill/>
         </Icon>
 
       </Split>
